@@ -1,6 +1,5 @@
 from unittest import TestCase as UnitTestCase
 
-import django
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import connection
@@ -39,16 +38,10 @@ class BaseTaggingTest(object):
             settings.DEBUG = original_DEBUG
 
     def _get_form_str(self, form_str):
-        if django.VERSION >= (1, 3):
-            form_str %= {
-                "help_start": '<span class="helptext">',
-                "help_stop": "</span>"
-            }
-        else:
-            form_str %= {
-                "help_start": "",
-                "help_stop": ""
-            }
+        form_str %= {
+            "help_start": '<span class="helptext">',
+            "help_stop": "</span>"
+        }
         return form_str
 
     def assert_form_renders(self, form, html):

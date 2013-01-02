@@ -11,21 +11,6 @@ from taggit.models import TaggedItem, GenericTaggedItemBase
 from taggit.utils import require_instance_manager
 
 
-try:
-    all
-except NameError:
-    # 2.4 compat
-    try:
-        from django.utils.itercompat import all
-    except ImportError:
-        # 1.1.X compat
-        def all(iterable):
-            for item in iterable:
-                if not item:
-                    return False
-            return True
-
-
 class TaggableRel(ManyToManyRel):
     def __init__(self):
         self.related_name = None
