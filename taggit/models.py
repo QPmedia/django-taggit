@@ -1,7 +1,7 @@
+from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.generic import GenericForeignKey
 from django.db import models, IntegrityError, transaction, router
-from django.template.defaultfilters import slugify as default_slugify
 from django.utils.translation import ugettext_lazy as _, ugettext
 
 
@@ -40,9 +40,13 @@ class TagBase(models.Model):
             return super(TagBase, self).save(*args, **kwargs)
 
     def slugify(self, tag, i=None):
-        slug = default_slugify(tag)
+        dotted_path = getattr(settings, 'TAGGIT_DEFAULT_SLUGIFY',
+            'django.template.defaultfilters.slugify')
+        module, func = dotted_path.rsplit('.', 1)
+        func = getattr(__import__(module, {}, {}, [func]), func)
+        slug = func(tag)
         if i is not None:
-            slug += "_%d" % i
+            slug += "%d" % i
         return slug
 
 
