@@ -57,7 +57,6 @@ class Tag(TagBase):
         verbose_name_plural = _("Tags")
 
 
-
 class ItemBase(models.Model):
     def __unicode__(self):
         return ugettext("%(object)s tagged with %(tag)s") % {
@@ -126,7 +125,7 @@ class GenericTaggedItemBase(ItemBase):
     content_object = GenericForeignKey()
 
     class Meta:
-        abstract=True
+        abstract = True
 
     @classmethod
     def lookup_kwargs(cls, instance):

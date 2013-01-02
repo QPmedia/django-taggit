@@ -10,6 +10,7 @@ class TagWidget(forms.TextInput):
             value = edit_string_for_tags([o.tag for o in value.select_related("tag")])
         return super(TagWidget, self).render(name, value, attrs)
 
+
 class TagField(forms.CharField):
     widget = TagWidget
 

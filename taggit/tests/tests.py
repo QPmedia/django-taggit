@@ -54,8 +54,10 @@ class BaseTaggingTest(object):
     def assert_form_renders(self, form, html):
         self.assertEqual(str(form), self._get_form_str(html))
 
+
 class BaseTaggingTestCase(TestCase, BaseTaggingTest):
     pass
+
 
 class BaseTaggingTransactionTestCase(TransactionTestCase, BaseTaggingTest):
     pass
@@ -87,17 +89,21 @@ class TagModelTestCase(BaseTaggingTransactionTestCase):
             "category-awesome-1"
         ], attr="slug")
 
+
 class TagModelDirectTestCase(TagModelTestCase):
     food_model = DirectFood
     tag_model = Tag
+
 
 class TagModelCustomPKTestCase(TagModelTestCase):
     food_model = CustomPKFood
     tag_model = Tag
 
+
 class TagModelOfficialTestCase(TagModelTestCase):
     food_model = OfficialFood
     tag_model = OfficialTag
+
 
 class TaggableManagerTestCase(BaseTaggingTestCase):
     food_model = Food
@@ -109,7 +115,7 @@ class TaggableManagerTestCase(BaseTaggingTestCase):
     def test_add_tag(self):
         apple = self.food_model.objects.create(name="apple")
         self.assertEqual(list(apple.tags.all()), [])
-        self.assertEqual(list(self.food_model.tags.all()),  [])
+        self.assertEqual(list(self.food_model.tags.all()), [])
 
         apple.tags.add('green')
         self.assert_tags_equal(apple.tags.all(), ['green'])
@@ -171,7 +177,7 @@ class TaggableManagerTestCase(BaseTaggingTestCase):
 
     def test_delete_bulk(self):
         apple = self.food_model.objects.create(name="apple")
-        kitty = self.pet_model.objects.create(pk=apple.pk,  name="kitty")
+        kitty = self.pet_model.objects.create(pk=apple.pk, name="kitty")
 
         apple.tags.add("red", "delicious", "fruit")
         kitty.tags.add("feline")
@@ -294,6 +300,7 @@ class TaggableManagerDirectTestCase(TaggableManagerTestCase):
     housepet_model = DirectHousePet
     taggeditem_model = TaggedPet
 
+
 class TaggableManagerCustomPKTestCase(TaggableManagerTestCase):
     food_model = CustomPKFood
     pet_model = CustomPKPet
@@ -304,6 +311,7 @@ class TaggableManagerCustomPKTestCase(TaggableManagerTestCase):
         # TODO with a charfield pk, pk is never None, so taggit has no way to
         # tell if the instance is saved or not
         pass
+
 
 class TaggableManagerOfficialTestCase(TaggableManagerTestCase):
     food_model = OfficialFood
@@ -377,13 +385,16 @@ class TaggableFormTestCase(BaseTaggingTestCase):
         ff = tm.formfield()
         self.assertRaises(ValidationError, ff.clean, "")
 
+
 class TaggableFormDirectTestCase(TaggableFormTestCase):
     form_class = DirectFoodForm
     food_model = DirectFood
 
+
 class TaggableFormCustomPKTestCase(TaggableFormTestCase):
     form_class = CustomPKFoodForm
     food_model = CustomPKFood
+
 
 class TaggableFormOfficialTestCase(TaggableFormTestCase):
     form_class = OfficialFoodForm
