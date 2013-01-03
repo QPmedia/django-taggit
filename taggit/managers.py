@@ -160,8 +160,10 @@ class _TaggableManager(models.Manager):
 
     @require_instance_manager
     def set(self, *tags):
-        self.clear()
-        self.add(*tags)
+        have = set(tag.name for tag in self.get_query_set().all())
+        wanted = set([tag.name if isinstance(tag, self.through.tag_model()) else tag for tag in tags])
+        self.add(*list(wanted - have))
+        self.remove(*list(have - wanted))
 
     @require_instance_manager
     def remove(self, *tags):
