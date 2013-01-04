@@ -7,63 +7,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django Taggit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-26 12:47-0500\n"
+"POT-Creation-Date: 2013-01-04 12:36+0100\n"
 "PO-Revision-Date: 2010-06-26 12:54-0600\n"
 "Last-Translator: Alex <alex.gaynor@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:20
+#: forms.py:22
 msgid "Please provide a comma-separated list of tags."
 msgstr "נא לספק רשימה של תגים מופרדת עם פסיקים."
 
-#: managers.py:41
-#: managers.py:113
-#: models.py:18
+#: managers.py:24
 msgid "Tags"
 msgstr "תגיות"
 
-#: managers.py:114
+#: managers.py:25
 msgid "A comma-separated list of tags."
 msgstr "רשימה של תגים מופרדת עם פסיקים."
 
-#: models.py:10
-msgid "Name"
-msgstr "שם"
-
-#: models.py:11
-msgid "Slug"
+#: models.py:9
+msgid "name"
 msgstr ""
 
-#: models.py:17
-msgid "Tag"
+#: models.py:10
+msgid "slug"
+msgstr ""
+
+#: models.py:55
+msgid "tag"
 msgstr "תג"
 
 #: models.py:56
+msgid "tags"
+msgstr ""
+
+#: models.py:61
 #, python-format
 msgid "%(object)s tagged with %(tag)s"
 msgstr "%(object)s מתויג עם %(tag)s"
 
-#: models.py:86
-msgid "Object id"
+#: models.py:108
+msgid "object"
 msgstr ""
 
-#: models.py:87
-msgid "Content type"
+#: models.py:111
+msgid "content type"
 msgstr ""
 
-#: models.py:92
-msgid "Tagged Item"
+#: models.py:147
+msgid "tagged item"
 msgstr ""
 
-#: models.py:93
-msgid "Tagged Items"
+#: models.py:148
+msgid "tagged items"
 msgstr ""
-
-#: contrib/suggest/models.py:57
-msgid "Enter a valid Regular Expression. To make it case-insensitive include \"(?i)\" in your expression."
-msgstr ""
-
