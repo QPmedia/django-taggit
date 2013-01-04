@@ -8,9 +8,8 @@ class TaggedItemInline(admin.StackedInline):
 
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ["name"]
-    inlines = [
-        TaggedItemInline
-    ]
+    list_display = ('name', 'slug')
+    search_fields = ('name',)
+    inlines = [TaggedItemInline]
 
 admin.site.register(Tag, TagAdmin)
