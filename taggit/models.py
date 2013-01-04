@@ -6,8 +6,8 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 
 
 class TagBase(models.Model):
-    name = models.CharField(verbose_name=_('Name'), max_length=100)
-    slug = models.SlugField(verbose_name=_('Slug'), unique=True, max_length=100)
+    name = models.CharField(verbose_name=_('name'), max_length=100)
+    slug = models.SlugField(verbose_name=_('slug'), unique=True, max_length=100)
 
     def __unicode__(self):
         return self.name
@@ -52,8 +52,8 @@ class TagBase(models.Model):
 
 class Tag(TagBase):
     class Meta:
-        verbose_name = _("Tag")
-        verbose_name_plural = _("Tags")
+        verbose_name = _('tag')
+        verbose_name_plural = _('tags')
 
 
 class ItemBase(models.Model):
@@ -105,10 +105,10 @@ class TaggedItemBase(ItemBase):
 
 
 class GenericTaggedItemBase(ItemBase):
-    object_id = models.IntegerField(verbose_name=_('Object id'), db_index=True)
+    object_id = models.IntegerField(verbose_name=_('object'), db_index=True)
     content_type = models.ForeignKey(
         ContentType,
-        verbose_name=_('Content type'),
+        verbose_name=_('content type'),
         related_name="%(app_label)s_%(class)s_tagged_items"
     )
     content_object = GenericForeignKey()
@@ -144,5 +144,5 @@ class GenericTaggedItemBase(ItemBase):
 
 class TaggedItem(GenericTaggedItemBase, TaggedItemBase):
     class Meta:
-        verbose_name = _("Tagged Item")
-        verbose_name_plural = _("Tagged Items")
+        verbose_name = _('tagged item')
+        verbose_name_plural = _('tagged items')
