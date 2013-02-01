@@ -10,6 +10,13 @@ class TagWidget(forms.TextInput):
             value = edit_string_for_tags([o.tag for o in value.select_related("tag")])
         return super(TagWidget, self).render(name, value, attrs)
 
+    def _has_changed(self, initial, data):
+        if initial is not None and not isinstance(initial, basestring):
+            initial = edit_string_for_tags([o.tag for o in initial.select_related("tag")])
+        if data is not None and not isinstance(data, basestring):
+            data = edit_string_for_tags([o.tag for o in data.select_related("tag")])
+        return super(TagWidget, self)._has_changed(initial, data)
+
 
 class TagField(forms.CharField):
     widget = TagWidget
