@@ -48,7 +48,7 @@ def edit_string_for_tags(tags):
     Ported from Jonathan Buchanan's `django-tagging
     <http://django-tagging.googlecode.com/>`_
     """
-    return u', '.join(sorted([tag.name for tag in tags]))
+    return u','.join(sorted([tag.name for tag in tags]))
 
 
 def require_instance_manager(func):
